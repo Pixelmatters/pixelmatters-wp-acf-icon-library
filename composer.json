@@ -1,0 +1,14 @@
+{
+  "name": "pixelmatters/acf-icon-library",
+  "description": "An WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used within other ACF Field Groups.",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "houke"
+    },
+    {
+      "name": "pixelmatters"
+    }
+  ],
+  "type": "wordpress-plugin"
+}
