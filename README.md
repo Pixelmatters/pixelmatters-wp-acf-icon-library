@@ -3,11 +3,11 @@ Adds an Icon Library ACF Option Page and an 'icon-picker' acf-field.
 
 ----
 
-## Please note
-Original Plugin by: https://github.com/houke/acf-icon-picker
+### Please note
+Original Plugin, no longer maintained, by: https://github.com/houke/acf-icon-picker
 
 ## Description
-An WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used within other ACF Field Groups:
+WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used within other ACF Field Groups:
 
 - Adds a WordPress BO page called "Icon Library" where you can add your Icons;
 - Adds an ACF called "Icon Picker" where you can choose from the Icons added to the "Icon Library";
@@ -18,11 +18,11 @@ This ACF field type is compatible with:
 [x] ACF 5
 
 ## Screenshots
-![Icon Library](https://raw.githubusercontent.com/Pixelmatters/pixelmatters-wp-acf-icon-library/main/screenshots/example.png)
+![Icon Library](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example.png)
 
 ## Installation
 
-### via Composer
+### Via Composer
 1. Add a line to your repositories array: `{ "type": "git", "url": "https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library" }`
 2. Add a line to your require block: `"pixelmatters/pixelmatters-wp-acf-icon-library": "main"`
 3. Run: composer update
