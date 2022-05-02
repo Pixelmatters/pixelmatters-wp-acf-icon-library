@@ -9,12 +9,12 @@ Author URI: https://pixelmatters.com
 License: MIT
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 GitHub Plugin URI: https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library
-GitHub Branch: master
+GitHub Branch: main
 */
 
-require_once("helpers.php");
-
 if (!defined('ABSPATH')) exit;
+
+require_once("helpers.php");
 
 if (!class_exists('px_acf_plugin_icon_library')) :
 
@@ -42,8 +42,6 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 				'url'		=> plugin_dir_url(__FILE__),
 				'path'		=> plugin_dir_path(__FILE__)
 			);
-
-			add_action('acf/include_field_types', 	array($this, 'include_field_types'));
 
 			add_filter('wpgraphql_acf_supported_fields', function (
 				$supported_fields
@@ -158,8 +156,8 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 				</style>
 <?php
 			}
-
 			add_action('acf/input/admin_head', 'px_acf_admin_head');
+			add_action('acf/include_field_types', array($this, 'include_field_types'));
 		}
 
 		function include_field_types($version = false)
@@ -168,8 +166,9 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 		}
 	}
 
-	add_action("init", function () {
+	add_action('plugins_loaded', function () {
 		new px_acf_plugin_icon_library();
 	}, 20);
+
 
 endif;
