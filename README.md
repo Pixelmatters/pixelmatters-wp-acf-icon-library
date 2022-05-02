@@ -18,7 +18,8 @@ This ACF field type is compatible with:
 [x] ACF 5
 
 ## Screenshots
-![Icon Library](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example.png)
+![Icon Library](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example_icon_library.png)
+![Icon Picker](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example_icon_picker.png)
 
 ## Installation
 
