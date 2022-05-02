@@ -115,7 +115,7 @@ if (!class_exists('px_acf_field_icon_picker')) :
 			wp_localize_script('acf-input-icon-picker', 'iv', array(
 				'path' => $this->url,
 				'svgs' => $this->svgs,
-				'no_icons_msg' => sprintf(esc_html__('To add icons, add your svg files in the /%s folder in your theme.', 'acf-icon-picker'), $this->path_suffix)
+				'no_icons_msg' => sprintf(esc_html__('To add icons, add them in the Icon Library.', 'acf-icon-picker'), $this->path_suffix)
 			));
 
 			wp_register_style('acf-input-icon-picker', "{$url}assets/css/input.css", array('acf-input'), $version);
