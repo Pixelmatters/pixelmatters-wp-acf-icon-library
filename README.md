@@ -37,6 +37,7 @@ This ACF field type is compatible with:
 * 1.0.0 - First release from Pixelmatters version
 
 ## Roadmap
+- Automatic title from filename;
 - Multiple Icon Upload;
 - Multiple Icon Variant Support (Line, Dark, Light);
 - Icon Library => Media Library;
