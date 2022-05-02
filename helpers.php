@@ -178,7 +178,8 @@ function add_acf_icon_library_options_page()
         'instruction_placement' => 'label',
         'hide_on_screen' => '',
         'show_in_graphql' => true,
-        'graphql_field_name' => "iconLibraryData",        
+        'graphql_field_name' => "iconLibraryData",
+
     ));
 }
 

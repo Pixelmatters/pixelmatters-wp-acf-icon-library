@@ -39,11 +39,12 @@ if (!class_exists('px_acf_field_icon_picker')) :
 			}
 
 			$this->svgs = array();
+			
 			// if has rows
-			if (have_rows('icons', 'option')) {
-
+			if (have_rows('icons', 'options')) {
+				
 				// while has rows
-				while (have_rows('icons', 'option')) {
+				while (have_rows('icons', 'options')) {
 
 					// instantiate row
 					the_row();
@@ -52,28 +53,31 @@ if (!class_exists('px_acf_field_icon_picker')) :
 						'name' => get_sub_field('title'),
 						'id' => get_sub_field('unique_id'),
 						'imgID' => get_sub_field('image'),
-						'icon' => wp_get_attachment_url(get_sub_field('image'))
+						'icon' => wp_get_attachment_url(get_sub_field('image')["id"])
 					);
+
 
 					array_push($this->svgs, $icon);
 				}
 			}
+
+
 
 			parent::__construct();
 		}
 
 		function render_field($field)
 		{
-			if (have_rows('icons', 'option')) {
+			if (have_rows('icons', 'options')) {
 
 				// while has rows
-				while (have_rows('icons', 'option')) {
+				while (have_rows('icons', 'options')) {
 
 					// instantiate row
 					the_row();
 
 					if (get_sub_field("unique_id") === $field['value']) {
-						$input_icon = get_sub_field('image') != "" ? wp_get_attachment_url(get_sub_field('image')) : null;
+						$input_icon = get_sub_field('image')["id"] != "" ? wp_get_attachment_url(get_sub_field('image')["id"]) : null;
 					}
 				}
 			}
@@ -82,7 +86,7 @@ if (!class_exists('px_acf_field_icon_picker')) :
 			<div class="acf-icon-picker">
 				<div class="acf-icon-picker__img">
 					<?php
-					if (isset($input_icon) && $field['value'] != "") {
+					if (isset($input_icon) && $input_icon != "" && $field['value'] != "") {
 						echo '<div class="acf-icon-picker__svg">';
 						echo '<img src="' . $input_icon . '" alt=""/>';
 						echo '</div>';
@@ -94,7 +98,7 @@ if (!class_exists('px_acf_field_icon_picker')) :
 					?>
 					<input type="hidden" readonly name="<?php echo esc_attr($field['name']) ?>" value="<?php echo esc_attr($field['value']) ?>" />
 				</div>
-				<?php if ($field['required'] == false  && isset($input_icon)) { ?>
+				<?php if ($field['required'] == false  && isset($input_icon) && $input_icon != "") { ?>
 					<span class="acf-icon-picker__remove">
 						Remove
 					</span>
@@ -122,7 +126,11 @@ if (!class_exists('px_acf_field_icon_picker')) :
 			wp_enqueue_style('acf-input-icon-picker');
 		}
 	}
-	new px_acf_field_icon_picker($this->settings);
+
+	add_action("admin_init", function() {
+		new px_acf_field_icon_picker($this->settings);
+	}, 20);
+	
 
 endif;
 
