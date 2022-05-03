@@ -41,7 +41,7 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 				'version'	=> '1.0.0',
 				'url'		=> plugin_dir_url(__FILE__),
 				'path'		=> plugin_dir_path(__FILE__)
-			);			
+			);
 
 			add_filter('wpgraphql_acf_supported_fields', function (
 				$supported_fields
@@ -94,7 +94,6 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 					$text_types = ['icon-picker'];
 					$input_icon = $value;
 					if (in_array($acf_field['type'], $text_types)) {
-
 						if (have_rows('icons', 'options')) {
 
 							// while has rows
@@ -105,7 +104,9 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 								$uniqueID = get_sub_field("unique_id");
 
 								if ($uniqueID === $value) {
-									$input_icon = get_sub_field('image') != "" ? get_sub_field('image') : null;
+									$image = get_sub_field('image');
+
+									$input_icon = isset($image) && $image["url"] != "" ? get_sub_field('image')["id"] : null;
 								}
 							}
 						}
@@ -159,7 +160,7 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 			add_action('acf/include_field_types', array($this, 'include_field_types'));
 		}
 
-		function include_field_types( $version = false )
+		function include_field_types($version = false)
 		{
 			include_once('fields/acf-icon-picker-v5.php');
 		}
