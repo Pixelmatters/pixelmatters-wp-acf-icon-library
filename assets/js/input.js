@@ -123,7 +123,6 @@
               <span class="icons-list__name"></span>
             </li>`);
           }
-          console.log(svg)
           // We use attr instead of data since we want to use css selector.
           $el.attr({
             'data-svg': svg.name,
