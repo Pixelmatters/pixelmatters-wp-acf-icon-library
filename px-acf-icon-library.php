@@ -3,7 +3,7 @@
 Plugin Name: Pixelmatters - WordPress ACF Icon Library
 Plugin URI: https://github.com/pixelmatters
 Description: An WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used within other ACF Field Groups
-Version: 1.0.0
+Version: 1.1.0
 Author: Pixelmatters
 Author URI: https://pixelmatters.com
 License: MIT
@@ -53,7 +53,7 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 			add_filter(
 				'wpgraphql_acf_register_graphql_field',
 				function ($field_config, $type_name, $field_name, $config) {
-					// How to add new WPGraphQL fields is super undocumented, I used this code as a base
+					// How to add new WPGraphQL fields is super undocumented, this code was used as a base
 					// https://github.com/wp-graphql/wp-graphql/issues/214#issuecomment-653141685
 					$acf_field = isset($config['acf_field'])
 						? $config['acf_field']
@@ -170,5 +170,59 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 		new px_acf_plugin_icon_library();
 	}, 20);
 
+
+	/**
+	 * Hide Icon Library Images from Media Library to prevent accidental deletion
+	 */
+
+	add_filter('ajax_query_attachments_args', 'hide_icon_library_attachments', 10, 1);
+
+	function hide_icon_library_attachments($query)
+	{
+
+		$imagesArr = [];
+		$query['meta_query'] = [];
+
+		if (have_rows('icons', 'options')) {
+
+			while (have_rows('icons', 'options')) {
+
+				the_row();
+
+				$image = get_sub_field('image');
+				array_push($imagesArr, $image["id"]);
+			}
+		}
+
+		$query['post__not_in'] = $imagesArr;
+
+		return $query;
+	}
+
+	add_filter('pre_get_posts', '_wp_media_pre_get_posts');
+
+	function _wp_media_pre_get_posts($wp_query)
+	{
+		global $pagenow;
+
+		if (!in_array($pagenow, array('upload.php', 'admin-ajax.php')))
+			return;
+
+		$imagesArr = [];
+		$query['meta_query'] = [];
+
+		if (have_rows('icons', 'options')) {
+
+			while (have_rows('icons', 'options')) {
+
+				the_row();
+
+				$image = get_sub_field('image');
+				array_push($imagesArr, $image["id"]);
+			}
+		}
+
+		$wp_query->set('post__not_in', $imagesArr);
+	}
 
 endif;
