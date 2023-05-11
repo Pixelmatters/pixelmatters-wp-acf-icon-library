@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Pixelmatters - WordPress ACF Icon Library
+Plugin Name: Pixelmatters - WordPress ACF PRO Icon Library
 Plugin URI: https://github.com/pixelmatters
-Description: An WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used within other ACF Field Groups
-Version: 1.1.0
+Description: An WordPress plugin that adds an ACF PRO Icon Library and Icon Picker that can be used within other ACF Field Groups
+Version: 1.2.0
 Author: Pixelmatters
 Author URI: https://pixelmatters.com
 License: MIT
@@ -158,17 +158,32 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 			}
 			add_action('acf/input/admin_head', 'px_acf_admin_head');
 			add_action('acf/include_field_types', array($this, 'include_field_types'));
+			add_action('acf/input/admin_enqueue_scripts', array($this, "px_acf_icon_library_load_script"));
 		}
 
 		function include_field_types($version = false)
 		{
 			include_once('fields/acf-icon-picker-v5.php');
 		}
+
+		/**
+		 * Load the JS for the Icon Library
+		 */
+		function px_acf_icon_library_load_script()
+		{
+			$url = $this->settings['url'];
+			$version = $this->settings['version'];
+
+			wp_enqueue_script('acf-icon-library-script', "{$url}assets/js/library.js", array('acf-input'), $version);
+		}
 	}
+
 
 	add_action('plugins_loaded', function () {
 		new px_acf_plugin_icon_library();
 	}, 20);
+
+
 
 
 	/**
