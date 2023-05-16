@@ -24,8 +24,8 @@ This ACF field type is compatible with:
 - [WPGraphQL - ACF](https://github.com/wp-graphql/wp-graphql-acf)
 
 ## Screenshots
-![Icon Library](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example_icon_library.png)
-![Icon Picker](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example_icon_picker.png)
+![Icon Library](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/screenshot-1.png)
+![Icon Picker](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/screenshot-2.png)
 
 ## Installation
 
