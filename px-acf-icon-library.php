@@ -1,9 +1,11 @@
 <?php
 /*
-Plugin Name: Pixelmatters - WordPress ACF PRO Icon Library
-Plugin URI: https://github.com/pixelmatters
-Description: An WordPress plugin that adds an ACF PRO Icon Library and Icon Picker that can be used within other ACF Field Groups
+Plugin Name: Pixelmatters - ACF PRO Icon Library
+Plugin URI: https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library
+Description: This plugin adds an ACF PRO Icon Library and Icon Picker that can be used within other ACF Field Groups
 Version: 1.2.0
+Requires at least: 5.0
+Requires PHP: 7.2
 Author: Pixelmatters
 Author URI: https://pixelmatters.com
 License: MIT
