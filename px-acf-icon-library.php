@@ -186,8 +186,6 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 	}, 20);
 
 
-
-
 	/**
 	 * Hide Icon Library Images from Media Library to prevent accidental deletion
 	 */
