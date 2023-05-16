@@ -8,7 +8,6 @@ Original Plugin, no longer maintained, by: https://github.com/houke/acf-icon-pic
 
 ## Description
 WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used within other ACF Field Groups:
-
 - Adds a WordPress BO page called "Icon Library" where you can add your Icons;
 - Adds an ACF called "Icon Picker" where you can choose from the Icons added to the "Icon Library";
 - Supports WPGraphQL and triggers a full build whenever an Icon is added, replaced or deleted;
@@ -16,6 +15,13 @@ WordPress plugin that adds an ACF Icon Library and Icon Picker that can be used 
 ## Compatibility
 This ACF field type is compatible with:
 [x] ACF 5
+[x] ACF 6
+
+## Required Plugins
+- [Advanced Custom Fields PRO](https://www.advancedcustomfields.com/pro/)
+- [ACF - Image Aspect Ratio Crop](https://wordpress.org/plugins/acf-image-aspect-ratio-crop/)
+- [WPGraphQL](https://wordpress.org/plugins/wp-graphql/)
+- [WPGraphQL - ACF](https://github.com/wp-graphql/wp-graphql-acf)
 
 ## Screenshots
 ![Icon Library](https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library/blob/main/screenshots/example_icon_library.png)
