@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Pixelmatters - ACF PRO Icon Library
+Plugin Name: Pixelmatters - WordPress ACF PRO Icon Library
 Plugin URI: https://github.com/Pixelmatters/pixelmatters-wp-acf-icon-library
-Description: This plugin adds an ACF PRO Icon Library and Icon Picker that can be used within other ACF Field Groups
-Version: 1.2.0
+Description: An WordPress plugin that adds an ACF PRO Icon Library and Icon Picker that can be used within other ACF Field Groups
+Version: 1.3.0
 Requires at least: 5.0
 Requires PHP: 7.2
 Author: Pixelmatters
@@ -38,6 +38,8 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 			);
 
 			px_required_plugins_active($plugin, $requiredPlugins, "");
+
+			add_option("px_acf_icon_library_images", []);
 
 			$this->settings = array(
 				'version'	=> '1.0.0',
@@ -123,6 +125,8 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 			// ADD A UNIQUE ID TO EACH ICON IN THE ICON LIBRARY ON SAVE
 			function set_unique_ids($id)
 			{
+				$imagesArr = [];
+
 				if ('options' === $id) {
 					if (have_rows('icons', 'options')) {
 
@@ -137,9 +141,15 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 								$uniqueID = bin2hex($bytes);
 								update_sub_field('unique_id', $uniqueID);
 							}
+
+							$image = get_sub_field('image');
+							array_push($imagesArr, $image["id"]);
 						}
+						update_option("px_acf_icon_library_images", $imagesArr);
 					}
 				}
+
+
 
 				return $id;
 			}
@@ -194,21 +204,8 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 
 	function hide_icon_library_attachments($query)
 	{
-
-		$imagesArr = [];
+		$imagesArr = get_option("px_acf_icon_library_images");
 		$query['meta_query'] = [];
-
-		if (have_rows('icons', 'options')) {
-
-			while (have_rows('icons', 'options')) {
-
-				the_row();
-
-				$image = get_sub_field('image');
-				array_push($imagesArr, $image["id"]);
-			}
-		}
-
 		$query['post__not_in'] = $imagesArr;
 
 		return $query;
@@ -220,23 +217,12 @@ if (!class_exists('px_acf_plugin_icon_library')) :
 	{
 		global $pagenow;
 
+		$imagesArr = get_option("px_acf_icon_library_images");
+
 		if (!in_array($pagenow, array('upload.php', 'admin-ajax.php')))
 			return;
 
-		$imagesArr = [];
 		$query['meta_query'] = [];
-
-		if (have_rows('icons', 'options')) {
-
-			while (have_rows('icons', 'options')) {
-
-				the_row();
-
-				$image = get_sub_field('image');
-				array_push($imagesArr, $image["id"]);
-			}
-		}
-
 		$wp_query->set('post__not_in', $imagesArr);
 	}
 
